@@ -87,10 +87,6 @@ El desarrollo se estructura en cuatro fases, cada una con tareas de menos de dos
 
 ## Roles y Responsabilidades
 
-- **Juanes (Project Lead & Desarrollador iOS):**  
-  - Lidera el proyecto, coordina tareas y supervisa el progreso.  
-  - Desarrolla la aplicación iOS con Swift, asegurando la paridad funcional.
-
 - **Ada (Desarrolladora Frontend):**  
   - Desarrolla las interfaces para web y Android utilizando React.  
   - Se enfoca en el diseño y la usabilidad de la aplicación.
@@ -108,6 +104,9 @@ El desarrollo se estructura en cuatro fases, cada una con tareas de menos de dos
 - **Marlon (Desarrollador Backend):**  
   - Configura la infraestructura de Spring Boot y desarrolla el marketplace para socios estratégicos.
 
+- **Juanes (Desarrollador iOS):**  
+  - Desarrolla la aplicación iOS con Swift.
+
 ---
 
 ## Tecnologías Utilizadas
@@ -121,19 +120,3 @@ El desarrollo se estructura en cuatro fases, cada una con tareas de menos de dos
 - **Comunicación y Gestión:** Trello, Slack
 
 ---
-
-## Configuración e Instalación
-
-### Requisitos Previos
-- [Node.js](https://nodejs.org/)
-- [Java 11 o superior](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
-- [Xcode](https://developer.apple.com/xcode/) (para iOS)
-- [Git](https://git-scm.com/)
-
-### Instalación
-
-1. **Clonar el repositorio:**
-
-   ```bash
-   git clone https://github.com/tu-usuario/parecheseacapp.git
-   cd parcheseacapp
