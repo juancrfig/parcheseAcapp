@@ -3,6 +3,7 @@
 
 https://drive.google.com/drive/folders/1xaTcc2nheKViqPZz7-1-3rM_Jev1MNzt?usp=sharing
 
+AI LINK: https://aistudio.google.com/app/prompts/new_chat?model=gemini-2.5-pro-exp-03-25
 
 **ParcheseAcapp** es una aplicación diseñada para unificar la información fragmentada de eventos en Colombia. Nuestra plataforma ofrece a los usuarios una experiencia personalizada e intuitiva para descubrir eventos de acuerdo a sus intereses y ubicación, al mismo tiempo que brinda a los organizadores herramientas potentes para promocionar sus eventos y conectar con socios estratégicos.
 
