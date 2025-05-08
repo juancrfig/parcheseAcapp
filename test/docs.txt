@@ -1,0 +1,706 @@
+Comprehensive Java Documentation for Exam Preparation
+This documentation provides detailed explanations, syntax, methods, properties, and examples for key Java topics. It is designed to ensure your AI understands everything about these concepts, with a focus on clarity and practical code snippets.
+
+Module 2: Object-Oriented Programming and Data Structures
+1. Introduction to Object-Oriented Programming (OOP)
+OOP is a paradigm that organizes code around "objects," instances of classes that encapsulate data (attributes) and behavior (methods).
+
+Key Concepts:
+Classes: Blueprints for objects, defining their structure and behavior.
+Objects: Instances of classes representing specific entities.
+Attributes: Variables that store an object’s state (e.g., color, model).
+Methods: Functions that define an object’s behavior (e.g., displayInfo()).
+
+
+Advantages:
+Modularity: Independent object code.
+Reusability: Objects reusable across programs.
+Maintainability: Easier updates.
+Abstraction: Focus on "what" not "how."
+
+
+
+Syntax Example:
+// Define a class
+public class Car {
+    // Attributes (properties)
+    String color;  // Stores the car's color
+    String model;  // Stores the car's model
+
+    // Method to display car info
+    void displayInfo() {
+        System.out.println("Model: " + model + ", Color: " + color);
+    }
+
+    // Main method to test the class
+    public static void main(String[] args) {
+        Car myCar = new Car();  // Create an object
+        myCar.model = "Toyota";  // Set attribute value
+        myCar.color = "Red";     // Set attribute value
+        myCar.displayInfo();     // Call method, Output: Model: Toyota, Color: Red
+    }
+}
+
+2. Encapsulation
+Encapsulation hides an object’s internal state, exposing only necessary methods to interact with it, typically via getters and setters.
+
+Access Modifiers:
+public: Accessible everywhere.
+private: Accessible only within the class.
+protected: Accessible in package and subclasses.
+default (no modifier): Package-private.
+
+
+Methods:
+Getters: Retrieve private attribute values (e.g., getName()).
+Setters: Modify private attribute values with validation (e.g., setAge()).
+
+
+
+Syntax Example:
+public class Person {
+    private String name;  // Private attribute for name
+    private int age;      // Private attribute for age
+
+    // Getter for name
+    public String getName() {
+        return name;
+    }
+
+    // Setter for name
+    public void setName(String name) {
+        this.name = name;  // 'this' distinguishes instance variable from parameter
+    }
+
+    // Getter for age
+    public int getAge() {
+        return age;
+    }
+
+    // Setter for age with validation
+    public void setAge(int age) {
+        if (age > 0) {  // Ensure age is positive
+            this.age = age;
+        }
+    }
+
+    public static void main(String[] args) {
+        Person person = new Person();
+        person.setName("Alice");  // Set name
+        person.setAge(30);        // Set age
+        System.out.println("Name: " + person.getName() + ", Age: " + person.getAge());
+        // Output: Name: Alice, Age: 30
+    }
+}
+
+3. Inheritance and Polymorphism
+
+Inheritance: A subclass inherits attributes and methods from a superclass using extends.
+Types: Single (one parent), Multilevel (chain of inheritance), Hierarchical (multiple children).
+
+
+Polymorphism: Objects can take multiple forms.
+Method Overloading: Same method name, different parameters (compile-time).
+Method Overriding: Subclass redefines superclass method (runtime, uses @Override).
+Abstract Classes: Cannot be instantiated, define methods for subclasses.
+Interfaces: Contracts for methods subclasses must implement.
+
+
+
+Syntax Example:
+// Superclass
+public class Animal {
+    public void makeSound() {
+        System.out.println("Some generic sound");
+    }
+}
+
+// Subclass inheriting from Animal
+public class Dog extends Animal {
+    @Override  // Indicates method override
+    public void makeSound() {
+        System.out.println("Bark");  // Overrides superclass method
+    }
+
+    public static void main(String[] args) {
+        Animal myDog = new Dog();  // Polymorphism: Animal reference, Dog object
+        myDog.makeSound();         // Output: Bark (runtime polymorphism)
+    }
+}
+
+4. Relationships between Classes
+
+Association: General relationship between objects.
+Aggregation: "Has-a" relationship, parts can exist independently (e.g., Car has an Engine).
+Composition: Stronger "part-of" relationship, parts cannot exist without the whole (e.g., House and Room).
+Dependency: Temporary use of another class.
+Realization: Implements an interface.
+
+Syntax Example (Aggregation):
+public class Engine {
+    String type = "V6";  // Engine attribute
+}
+
+public class Car {
+    private Engine engine;  // Aggregation: Car has-an Engine
+
+    public Car(Engine engine) {
+        this.engine = engine;  // Constructor injects Engine
+    }
+
+    public void showEngine() {
+        System.out.println("Engine Type: " + engine.type);
+    }
+
+    public static void main(String[] args) {
+        Engine engine = new Engine();
+        Car myCar = new Car(engine);
+        myCar.showEngine();  // Output: Engine Type: V6
+    }
+}
+
+5. Sets, Maps, Enumerations, and Exceptions
+
+Sets: Collections without duplicates (java.util.Set).
+HashSet: Unordered, fast access.
+TreeSet: Sorted order.
+LinkedHashSet: Maintains insertion order.
+Methods: add(), remove(), contains(), size().
+
+
+Maps: Key-value pairs (java.util.Map).
+HashMap: Unordered.
+TreeMap: Sorted by keys.
+LinkedHashMap: Maintains insertion order.
+Methods: put(), get(), remove(), keySet().
+
+
+Enumerations (Enums): Fixed constants.
+Properties: Implicitly public static final.
+Methods: values(), valueOf().
+
+
+Exceptions: Error handling.
+try-catch: Handles exceptions.
+throw: Throws custom exceptions.
+throws: Declares exceptions in method signature.
+
+
+
+Syntax Example:
+import java.util.*;
+
+public class CollectionsExample {
+    public static void main(String[] args) {
+        // Set
+        Set<String> set = new HashSet<>();
+        set.add("Apple");    // Add element
+        set.add("Banana");
+        System.out.println("Set: " + set);  // Output: Set: [Apple, Banana]
+
+        // Map
+        Map<String, Integer> map = new HashMap<>();
+        map.put("Apple", 1);  // Add key-value pair
+        map.put("Banana", 2);
+        System.out.println("Map: " + map);  // Output: Map: {Apple=1, Banana=2}
+
+        // Enum
+        enum Day { MONDAY, TUESDAY, WEDNESDAY }
+        Day today = Day.MONDAY;
+        System.out.println("Today: " + today);  // Output: Today: MONDAY
+
+        // Exception
+        try {
+            int result = divide(10, 0);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: " + e.getMessage());
+            // Output: Error: Cannot divide by zero
+        }
+    }
+
+    static int divide(int a, int b) throws ArithmeticException {
+        if (b == 0) {
+            throw new ArithmeticException("Cannot divide by zero");
+        }
+        return a / b;
+    }
+}
+
+
+Module 3: Design Principles and Patterns
+1. Design Principles (SOLID)
+
+S (Single Responsibility): One class, one purpose.
+O (Open-Closed): Extendable without modification.
+L (Liskov Substitution): Subclasses replaceable for superclasses.
+I (Interface Segregation): Specific, small interfaces.
+D (Dependency Inversion): Depend on abstractions.
+
+Syntax Example (Single Responsibility):
+public class UserManager {
+    public void addUser(String name) {
+        System.out.println("User added: " + name);
+    }
+}
+
+public class EmailSender {
+    public void sendEmail(String message) {
+        System.out.println("Email sent: " + message);
+    }
+
+    public static void main(String[] args) {
+        UserManager um = new UserManager();
+        um.addUser("Alice");  // Output: User added: Alice
+        EmailSender es = new EmailSender();
+        es.sendEmail("Hello");  // Output: Email sent: Hello
+    }
+}
+
+2. Design Patterns (Creational)
+
+Singleton: One instance globally.
+Methods: getInstance().
+
+
+Factory Method: Flexible object creation.
+Abstract Factory: Creates related object families.
+Builder: Step-by-step construction.
+Prototype: Clones existing objects.
+
+Syntax Example (Singleton):
+public class Singleton {
+    private static Singleton instance;  // Private static instance
+
+    private Singleton() {}  // Private constructor
+
+    public static Singleton getInstance() {  // Public access method
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+
+    public void showMessage() {
+        System.out.println("Singleton instance");
+    }
+
+    public static void main(String[] args) {
+        Singleton s = Singleton.getInstance();
+        s.showMessage();  // Output: Singleton instance
+    }
+}
+
+3. Design Patterns (Structural)
+
+Adapter: Bridges incompatible interfaces.
+Bridge: Separates abstraction/implementation.
+Composite: Tree-like hierarchies.
+Decorator: Adds behavior dynamically.
+Facade: Simplifies subsystems.
+Flyweight: Shares lightweight objects.
+Proxy: Controls object access.
+
+Syntax Example (Adapter):
+interface MediaPlayer {
+    void play(String type, String file);
+}
+
+class VlcPlayer {
+    public void playVlc(String file) {
+        System.out.println("VLC playing: " + file);
+    }
+}
+
+class MediaAdapter implements MediaPlayer {
+    VlcPlayer vlc = new VlcPlayer();
+
+    public void play(String type, String file) {
+        if (type.equals("vlc")) {
+            vlc.playVlc(file);
+        }
+    }
+
+    public static void main(String[] args) {
+        MediaPlayer player = new MediaAdapter();
+        player.play("vlc", "movie.vlc");  // Output: VLC playing: movie.vlc
+    }
+}
+
+4. Design Patterns (Behavioral)
+
+Observer: Notifies changes to subscribers.
+Strategy: Interchangeable algorithms.
+Command: Encapsulates requests.
+Iterator: Sequential collection access.
+
+Syntax Example (Observer):
+import java.util.ArrayList;
+import java.util.List;
+
+interface Observer {
+    void update();
+}
+
+class Subject {
+    private List<Observer> observers = new ArrayList<>();
+
+    public void addObserver(Observer o) {
+        observers.add(o);
+    }
+
+    public void notifyObservers() {
+        for (Observer o : observers) {
+            o.update();
+        }
+    }
+}
+
+class ConcreteObserver implements Observer {
+    public void update() {
+        System.out.println("State changed!");
+    }
+
+    public static void main(String[] args) {
+        Subject subject = new Subject();
+        ConcreteObserver observer = new ConcreteObserver();
+        subject.addObserver(observer);
+        subject.notifyObservers();  // Output: State changed!
+    }
+}
+
+
+Module 4: Concurrency in Java
+1. Introduction to Concurrency
+Concurrency enables multiple tasks to run simultaneously using threads.
+
+Thread Creation:
+Extend Thread or implement Runnable.
+
+
+Key Methods:
+start(): Begins thread execution.
+run(): Defines thread’s task.
+sleep(): Pauses execution.
+
+
+
+Syntax Example:
+class MyThread implements Runnable {
+    public void run() {
+        System.out.println("Thread running");
+    }
+
+    public static void main(String[] args) {
+        Thread thread = new Thread(new MyThread());
+        thread.start();  // Output: Thread running
+    }
+}
+
+2. Thread Synchronization and Atomic Processes
+
+Synchronized: Prevents concurrent access issues.
+Keyword: synchronized.
+
+
+Locks: Fine-grained control (java.util.concurrent.locks.Lock).
+Atomic Classes: Thread-safe operations (e.g., AtomicInteger).
+
+Syntax Example:
+class Counter {
+    private int count = 0;
+
+    public synchronized void increment() {  // Thread-safe method
+        count++;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        Counter counter = new Counter();
+        Thread t1 = new Thread(() -> { for (int i = 0; i < 1000; i++) counter.increment(); });
+        Thread t2 = new Thread(() -> { for (int i = 0; i < 1000; i++) counter.increment(); });
+        t1.start();
+        t2.start();
+        t1.join();
+        t2.join();
+        System.out.println("Count: " + counter.getCount());  // Output: Count: 2000
+    }
+}
+
+
+Module 5: Data Persistence
+1. File Handling in Java
+Handles reading/writing files using streams.
+
+Classes:
+BufferedReader: Reads text efficiently.
+BufferedWriter: Writes text efficiently.
+
+
+Methods:
+readLine(): Reads a line of text.
+write(): Writes text.
+
+
+
+Syntax Example:
+import java.io.*;
+
+class FileHandler {
+    public static void main(String[] args) throws IOException {
+        // Writing to a file
+        BufferedWriter writer = new BufferedWriter(new FileWriter("output.txt"));
+        writer.write("Hello, Java!");
+        writer.close();
+
+        // Reading from a file
+        BufferedReader reader = new BufferedReader(new FileReader("output.txt"));
+        String line = reader.readLine();
+        System.out.println(line);  // Output: Hello, Java!
+        reader.close();
+    }
+}
+
+2. Java Database Connectivity (JDBC)
+Connects Java to databases.
+
+Key Classes:
+Connection: Establishes database connection.
+Statement: Executes SQL queries.
+ResultSet: Holds query results.
+
+
+Methods:
+getConnection(): Connects to DB.
+executeQuery(): Runs SELECT queries.
+
+
+
+Syntax Example:
+import java.sql.*;
+
+class DatabaseExample {
+    public static void main(String[] args) throws SQLException {
+        String url = "jdbc:mysql://localhost:3306/mydb";
+        Connection conn = DriverManager.getConnection(url, "user", "password");
+        Statement stmt = conn.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT name FROM users");
+        while (rs.next()) {
+            System.out.println(rs.getString("name"));
+        }
+        conn.close();
+    }
+}
+
+
+Module 6: Lambdas and Stream API
+1. Lambda Expressions
+Anonymous functions for functional interfaces.
+
+Syntax: (params) -> expression
+Functional Interface: Single abstract method (e.g., Predicate).
+Methods: Depends on interface (e.g., test() for Predicate).
+
+Syntax Example:
+import java.util.function.Predicate;
+
+class LambdaExample {
+    public static void main(String[] args) {
+        Predicate<String> startsWithA = s -> s.startsWith("A");  // Lambda
+        System.out.println(startsWithA.test("Alice"));  // Output: true
+        System.out.println(startsWithA.test("Bob"));    // Output: false
+    }
+}
+
+2. Stream API
+Processes collections functionally.
+
+Operations:
+Intermediate: filter(), map() (returns stream).
+Terminal: collect(), forEach() (produces result).
+
+
+Methods:
+stream(): Creates a stream.
+filter(): Filters elements.
+
+
+
+Syntax Example:
+import java.util.*;
+import java.util.stream.*;
+
+class StreamExample {
+    public static void main(String[] args) {
+        List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+        numbers.stream()
+               .filter(n -> n % 2 == 0)  // Keep even numbers
+               .forEach(System.out::println);  // Output: 2, 4
+    }
+}
+
+String and Date Manipulation in Java
+This document provides an overview of key methods and properties (characteristics) for manipulating strings and dates in Java. The String class is used for text handling, while the modern java.time package (introduced in Java 8) is used for date and time operations.
+
+String Manipulation
+The String class in Java represents immutable sequences of characters, widely used for text processing.
+Key Properties of Strings
+
+Immutability: Once created, a String cannot be modified; operations like replacement create a new String.
+Thread Safety: Immutability ensures strings are safe to use across threads without synchronization.
+UTF-16 Encoding: Strings are stored internally as UTF-16 encoded characters.
+Concatenation: Strings can be combined using the + operator or the concat() method.
+
+Essential String Methods
+Here are some of the most useful methods for string manipulation:
+
+length()  
+
+Returns the number of characters in the string.  
+Syntax: int length()  
+Example: "Hello".length() returns 5.
+
+
+charAt(int index)  
+
+Returns the character at the specified index (0-based).  
+Syntax: char charAt(int index)  
+Example: "Hello".charAt(1) returns 'e'.
+
+
+substring(int beginIndex, int endIndex)  
+
+Extracts a substring from beginIndex to endIndex - 1.  
+Syntax: String substring(int beginIndex, int endIndex)  
+Example: "Hello World".substring(0, 5) returns "Hello".
+
+
+indexOf(String str)  
+
+Returns the index of the first occurrence of str, or -1 if not found.  
+Syntax: int indexOf(String str)  
+Example: "Hello World".indexOf("World") returns 6.
+
+
+toLowerCase()  
+
+Converts all characters to lowercase.  
+Syntax: String toLowerCase()  
+Example: "HELLO".toLowerCase() returns "hello".
+
+
+toUpperCase()  
+
+Converts all characters to uppercase.  
+Syntax: String toUpperCase()  
+Example: "hello".toUpperCase() returns "HELLO".
+
+
+trim()  
+
+Removes leading and trailing whitespace.  
+Syntax: String trim()  
+Example: "  Hello  ".trim() returns "Hello".
+
+
+replace(char oldChar, char newChar)  
+
+Replaces all occurrences of oldChar with newChar.  
+Syntax: String replace(char oldChar, char newChar)  
+Example: "Hello".replace('l', 'p') returns "Heppo".
+
+
+split(String regex)  
+
+Splits the string into an array based on a regular expression.  
+Syntax: String[] split(String regex)  
+Example: "apple,banana".split(",") returns ["apple", "banana"].
+
+
+
+
+Date Manipulation
+Java’s java.time package provides modern, robust classes for date and time manipulation, such as LocalDate, LocalTime, and LocalDateTime. These classes are immutable and thread-safe.
+Key Properties of Date and Time Classes
+
+Immutability: Modifications create new instances rather than altering existing ones.
+Thread Safety: Safe for concurrent use due to immutability.
+Separation: Distinct classes for date (LocalDate), time (LocalTime), and combined date-time (LocalDateTime).
+Time Zone Support: Use ZonedDateTime for time zone-aware operations (not covered here).
+
+Essential Date and Time Methods
+LocalDate (Date without time)
+
+LocalDate.now()  
+
+Returns the current date.  
+Syntax: static LocalDate now()  
+Example: LocalDate.now() might return 2023-10-15.
+
+
+LocalDate.of(int year, int month, int dayOfMonth)  
+
+Creates a specific date.  
+Syntax: static LocalDate of(int year, int month, int dayOfMonth)  
+Example: LocalDate.of(2023, 10, 15) returns 2023-10-15.
+
+
+plusDays(long daysToAdd)  
+
+Adds days to the date.  
+Syntax: LocalDate plusDays(long daysToAdd)  
+Example: LocalDate.of(2023, 10, 15).plusDays(5) returns 2023-10-20.
+
+
+getDayOfWeek()  
+
+Returns the day of the week.  
+Syntax: DayOfWeek getDayOfWeek()  
+Example: LocalDate.of(2023, 10, 15).getDayOfWeek() returns SUNDAY.
+
+
+
+LocalTime (Time without date)
+
+LocalTime.now()  
+
+Returns the current time.  
+Syntax: static LocalTime now()  
+Example: LocalTime.now() might return 14:30:00.
+
+
+LocalTime.of(int hour, int minute)  
+
+Creates a specific time.  
+Syntax: static LocalTime of(int hour, int minute)  
+Example: LocalTime.of(14, 30) returns 14:30:00.
+
+
+
+LocalDateTime (Date and time combined)
+
+LocalDateTime.now()  
+
+Returns the current date and time.  
+Syntax: static LocalDateTime now()  
+Example: LocalDateTime.now() might return 2023-10-15T14:30:00.
+
+
+LocalDateTime.of(int year, int month, int dayOfMonth, int hour, int minute)  
+
+Creates a specific date and time.  
+Syntax: static LocalDateTime of(int year, int month, int dayOfMonth, int hour, int minute)  
+Example: LocalDateTime.of(2023, 10, 15, 14, 30) returns 2023-10-15T14:30:00.
+
+
+
+DateTimeFormatter (Formatting dates)
+
+DateTimeFormatter.ofPattern(String pattern)  
+Creates a formatter for custom date/time patterns.  
+Syntax: static DateTimeFormatter ofPattern(String pattern)  
+Example: LocalDate date = LocalDate.of(2023, 10, 15);
+DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+String formatted = date.format(formatter);  // Returns "15/10/2023"
